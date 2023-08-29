@@ -1,0 +1,40 @@
+version: '3.1'
+
+services:
+
+  front:
+    image: patriciahonorato/front-notas
+    restart: always
+    environment:
+      - DATABASE_URL=postgresql+psycopg2://postgres:senha@db:5435/notasdb
+    ports:
+      - 80:80
+    networks:
+      - app
+    depends_on:
+      - db
+
+  db:
+    image: patriciahonorato/dbnotes
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: senha
+      POSTGRES_USER: postgres
+      POSTGRES_DB: notasdb
+    networks:
+      - app
+    ports:
+      - 5435:5432
+    container_name: banco-db-ponderada2
+
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - 8080:8080
+    depends_on:
+      - db
+    container_name: adminer
+networks:
+  app:
+    driver: bridge

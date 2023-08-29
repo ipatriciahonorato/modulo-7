@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notes App</title>
+    <style>
+        .note {
+            border: 1px solid #ddd;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 5px;
+            background-color: #fff8e1;
+        }
+
+        .note-header {
+            display: flex;
+            justify-content: space-between;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Form to add new note -->
+    <form action="/add" method="post">
+        <input type="text" name="titulo" placeholder="Title" required>
+        <textarea name="descricao" placeholder="Description" rows="4" required></textarea>
+        <button type="submit">Add Note</button>
+    </form>
+
+    <!-- Display existing notes -->
+    {% for item in items %}
+    <div class="note">
+        <div class="note-header">
+            <h2>{{ item['titulo'] }}</h2>
+            <form action="/delete/{{ item['id'] }}" method="post">
+                <button type="submit">Delete (ID: {{ item['id'] }})</button>
+            </form>
+        </div>
+        <p>{{ item['descricao'] }}</p>
+    </div>
+    {% endfor %}
+</body>
+
+</html>
