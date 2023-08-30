@@ -36,12 +36,11 @@ A imagem do banco de dados que será utilizada pode ser de qualquer banco de dad
 
 # Tecnologias utilizadas
 
- **- HTML5;** 
- **- Flask;** 
- **- Docker;** 
- **- PostgreSQL;** 
- **- SQLAlchemy;** 
- **- pandas.****
+ - HTML5;
+ - Flask;
+ - Docker;
+ - PostgreSQL; 
+ - pandas.
 
 ## Descrição do projeto
 
@@ -57,6 +56,7 @@ A do **banco** está em: [\[Repositório do Banco\]](https://hub.docker.com/repo
 -   **CSS3**: Usado para estilizar o currículo.
 -   **Flask**: Framework usado para criar o servidor que hospeda o currículo online.
 -   **Docker**: Usado para contêinerizar o projeto, facilitando a implantação e portabilidade.
+-   **PostgreSQL**: Banco de dados relacional.
 
 ## Instruções de utilização
 
