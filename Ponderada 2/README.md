@@ -48,7 +48,7 @@ Este projeto é uma aplicação web para gerenciar notas. Está hospedado em um 
 
 **A imagem do docker do front-end** está disponível em: [Repositório Docker](https://hub.docker.com/repository/docker/patriciahonorato/front-notas/general) 
 
-A do **banco** está em: [\[Repositório do Banco\]](https://hub.docker.com/repository/docker/patriciahonorato/dbnotes/general)
+A do **banco** está em: [Repositório do Banco](https://hub.docker.com/repository/docker/patriciahonorato/dbnotes/general)
 
 ## Funcionalides
 
