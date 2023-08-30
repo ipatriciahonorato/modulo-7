@@ -58,6 +58,24 @@ A do **banco** está em: [Repositório do Banco](https://hub.docker.com/reposito
 -   **Docker**: Usado para contêinerizar o projeto, facilitando a implantação e portabilidade.
 -   **PostgreSQL**: Banco de dados relacional.
 
+## Estrutura de pastas do projeto 
+
+Ponderada 2/
+│
+├── db/
+│   ├── CreateDatabase.sql
+│   └── Dockerfile (do db)
+│
+├── templates/
+│   ├── index.html
+│   └── notas.html
+│
+├── conectar_tabela.py
+├── docker-compose.yml
+├── Dockerfile
+├── requirements.txt
+└── server.py
+
 ## Instruções de utilização
 
  **1. Clonar o repositório do GitHub que contém o arquivo `docker-compose.yml`:**
@@ -88,3 +106,6 @@ http://localhost:8080
 **5. Para acessar a interface:**
 
     http://localhost
+    
+username: patriciahonorato
+senha: #123!
