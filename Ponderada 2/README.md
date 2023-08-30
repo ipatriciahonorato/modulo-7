@@ -60,21 +60,18 @@ A do **banco** está em: [Repositório do Banco](https://hub.docker.com/reposito
 
 ## Estrutura de pastas do projeto 
 
-Ponderada 2/
-│
-├── db/
-│   ├── CreateDatabase.sql
-│   └── Dockerfile (do db)
-│
-├── templates/
-│   ├── index.html
-│   └── notas.html
-│
-├── conectar_tabela.py
-├── docker-compose.yml
-├── Dockerfile
-├── requirements.txt
-└── server.py
+- **Ponderada 2/**
+  - **db/**
+    - `CreateDatabase.sql`
+    - `Dockerfile` (do db)
+  - **templates/**
+    - `index.html`
+    - `notas.html`
+  - `conectar_tabela.py`
+  - `docker-compose.yml`
+  - `Dockerfile` (do servidor)
+  - `requirements.txt`
+  - `server.py`
 
 ## Instruções de utilização
 
