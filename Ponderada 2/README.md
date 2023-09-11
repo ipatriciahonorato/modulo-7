@@ -36,12 +36,11 @@ A imagem do banco de dados que será utilizada pode ser de qualquer banco de dad
 
 # Tecnologias utilizadas
 
- **- HTML5;** 
- **- Flask;** 
- **- Docker;** 
- **- PostgreSQL;** 
- **- SQLAlchemy;** 
- **- pandas.****
+ - HTML5;
+ - Flask;
+ - Docker;
+ - PostgreSQL; 
+ - pandas.
 
 ## Descrição do projeto
 
@@ -49,7 +48,7 @@ Este projeto é uma aplicação web para gerenciar notas. Está hospedado em um 
 
 **A imagem do docker do front-end** está disponível em: [Repositório Docker](https://hub.docker.com/repository/docker/patriciahonorato/front-notas/general) 
 
-A do **banco** está em: [\[Repositório do Banco\]](https://hub.docker.com/repository/docker/patriciahonorato/dbnotes/general)
+A do **banco** está em: [Repositório do Banco](https://hub.docker.com/repository/docker/patriciahonorato/dbnotes/general)
 
 ## Funcionalides
 
@@ -57,6 +56,22 @@ A do **banco** está em: [\[Repositório do Banco\]](https://hub.docker.com/repo
 -   **CSS3**: Usado para estilizar o currículo.
 -   **Flask**: Framework usado para criar o servidor que hospeda o currículo online.
 -   **Docker**: Usado para contêinerizar o projeto, facilitando a implantação e portabilidade.
+-   **PostgreSQL**: Banco de dados relacional.
+
+## Estrutura de pastas do projeto 
+
+- **Ponderada 2/**
+  - **db/**
+    - `CreateDatabase.sql`
+    - `Dockerfile` (do db)
+  - **templates/**
+    - `index.html`
+    - `notas.html`
+  - `conectar_tabela.py`
+  - `docker-compose.yml`
+  - `Dockerfile` (do servidor)
+  - `requirements.txt`
+  - `server.py`
 
 ## Instruções de utilização
 
@@ -88,3 +103,6 @@ http://localhost:8080
 **5. Para acessar a interface:**
 
     http://localhost
+    
+username: patriciahonorato
+senha: #123!
