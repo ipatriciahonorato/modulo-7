@@ -100,8 +100,9 @@ No contexto deste projeto, os seguintes passos para pré processamento dos dados
 
 (**Observação:** o deploy da API foi feita nesse link mas conforme as instruções da atividade, após a gravação do vídeo a API foi excluída da nuvem.)
 
-## Video de demonstração de funcionamento do projeto
+## Vídeo de demonstração de funcionamento do projeto
 
+[Link do video no Google Drive](https://drive.google.com/file/d/1FUuOb9ZGqrjV-6_IHeKmp3zZMEbWdDt8/view?usp=sharing)
 
 ### Referências
 
