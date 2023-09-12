@@ -43,6 +43,7 @@ A imagem do docker do projeto está disponível em: [Repositório Docker](https:
 -   Python;
 -   FastAPI;
 -   Pycaret;
+-   Uvicorn;
 -   Docker;
 -   AWS EC2.
 ### Funcionalidades
@@ -52,6 +53,7 @@ A imagem do docker do projeto está disponível em: [Repositório Docker](https:
 -   **Pycaret**: Biblioteca de Machine Learning usada para treinar, testar e selecionar o modelo.
 -   **Docker**: Usado para contêinerizar o projeto.
 -   **AWS EC2**: Serviço de cloud utilizado para hospedar a API.
+-   **Uvicorn:** ASGI server, necessário para servir nossa API.
 
 ## Descrição e Justificativa do Modelo de Machine Learning
 O modelo de Machine Learning escolhido para este projeto foi o Logistic Regression. A escolha deste modelo foi baseada em vários fatores:
@@ -70,6 +72,47 @@ No contexto deste projeto, os seguintes passos para pré processamento dos dados
 **- Conversão de Variáveis Categóricas:** As colunas categóricas, como 'sex', 'cp', entre outras, foram convertidas para o tipo 'category'. Isso facilita a codificação destas colunas mais tarde e também melhora a eficiência do modelo, pois ele não terá que lidar com valores de texto.
 
 **- Escalonamento de Variáveis Numéricas:** Para garantir que todas as características numéricas estejam na mesma escala e para melhorar a convergência do modelo, as variáveis numéricas foram padronizadas usando o StandardScaler do scikit-learn. Isso significa que cada recurso terá uma média de 0 e um desvio padrão de 1.
+
+## Funcionamento da API
+
+A API utiliza um modelo treinado previamente com a biblioteca PyCaret,  seu principal objetivo é fornecer um endpoint dedicado para a predição precisa de doenças cardíacas.
+
+**- Modelos Pydantic:**
+
+**HeartPredictInput:** Define o esquema de dados de entrada esperado pela API, que inclui todos os recursos necessários para a predição.
+
+**Campos de entrada:**
+
+    age: idade
+    sex: sexo
+    cp: tipo de dor no peito
+    trestbps: pressão arterial em repouso
+    chol: colesterol
+    fbs: açúcar no sangue em jejum
+    restecg: resultados eletrocardiográficos em repouso
+    thalach: frequência cardíaca máxima alcançada
+    exang: angina induzida por exercício
+    oldpeak: depressão do segmento ST induzida pelo exercício
+    slope: inclinação do segmento ST
+    ca: número de vasos principais
+    thal: teste de estresse com tálio
+    HeartPredictOutput: Define o esquema de saída da predição.
+  
+**HeartPredictOutput:** Este modelo ilustra o formato de saída após a predição.
+
+**Campos de saída:**
+**prediction**: Este campo traduz o resultado da predição, onde '1' indica presença e '0' ausência de doença cardíaca.
+
+**Exemplo de utilização do endpoint:**
+
+    curl --request POST \
+      --url http://localhost:8000/predict \
+      --header 'content-type: application/json' \
+      --data '{ "age": 52, "sex": 1, ... outros campos... }'
+
+**Execução da API:**
+
+Para rodar a API localmente, o script pode ser executado diretamente. Isto iniciará um servidor local usando Uvicorn no endereço `127.0.0.1` e na porta `8000`.
 
 ## Estrutura de pastas do projeto
 
