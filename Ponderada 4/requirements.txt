@@ -1,0 +1,9 @@
+fastapi
+uvicorn
+pydantic
+pycaret
+boto3
+pandas
+streamlit
+requests
+fastapi-login
