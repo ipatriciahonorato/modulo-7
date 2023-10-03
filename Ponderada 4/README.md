@@ -1,152 +1,125 @@
-# Atividade 3: Deploy de modelo de Machine Learning na Nuvem
+# Atividade 4: Construção de Dashboard para Visualização de Dados
 
 ## Enunciado
 
-Construção e deploy de um modelo de predição ou classificação criados pelos alunos. Este modelo deve ser deployado em uma nuvem comercial e uma API de acesso a ele deve ser desenvolvida.
+Esta atividade tem por objetivo realizar a integração das demais atividades desenvolvidas. Ela será o frontend de visualização de dados do modelo disponibilizado. Esta interface deverá consumir os dados disponibilizados da atividade ponderada 3. O acesso a este dashboard deverá acontecer mediante ao login do usuário, conforme desenvolvido na atividade ponderada 2.
 
-> _**IMPORTANTE 1:**_  Para está entrega, não é necessário construir uma interface de usuário para o modelo, como um frontend. Apenas a API de acesso ao modelo deve ser desenvolvida.
+> _**IMPORTANTE 1:**_  Para está entrega, o estudante deve utilizar o framework de frontend de sua preferência. O framework deve ser justificado pelo estudante. Uma sugestão deframework para a criação do Dashboard é o Streamlit. A interface de login do usuário pode ser implementada com o próprio framework de frontend em conjunto com o FastAPI.
 
-_**IMPORTANTE 2:**_  Para está entrega, dois pontos são obrigatórios:
+> _**IMPORTANTE 2:**_  Para está entrega, gravar a aplicação funcionando na infraestrutura provisionada na AWS para sua execução. Descrever qual infraestrutura foi utilizada e como ela foi provisionada.
 
-1.  A utilização do Python com o FastAPI para realizar a construção da API;
-2.  O deploy com o imagens de containers no DockerHub.
-
-O estudante deve escolher um conjunto de dados dentre os relacionados abaixo. Qualquer conjunto diferente destes deve ser aprovado pelo professor. Toda a manipulação realizada com os dados deve ser descrita na documentação do projeto.
-
-O conjunto de dados escolhido deve ser utilizado para a construção de um modelo de predição ou classificação. O modelo deve ser construído utilizando o Python e o framework de Machine Learning de preferência do estudante. A escolha do modelo deve ser justificada pelo estudante.
-
-O ambiente de desenvolvimento deve ser documentado, assim como o ambiente de produção. Um video deve ser gravado apresentado o processo de utilização do modelo em produção.
-
-> _**IMPORTANTE:**_  Depois de gravado o comportamento do projeto em produção, o estudante deve remover os recursos alocados na nuvem comercial. Apenas o vídeo será utilizado para a avaliação do projeto, em conjunto com os códigos fontes desenvolvidos.
-
-## [](https://github.com/Murilo-ZC/Questoes-Trabalho-Inteli-M7/tree/main/ponderada3#padr%C3%A3o-de-qualidade)Padrão de qualidade
+## Padrão de qualidade
 
 Os pontos que serão avaliados na entrega do projeto:
 
-1.  _**(Até 1.0 ponto)**_  Construção do dockerfile: o arquivo contem todas as informações necessárias para a construção da imagem dos containers para produção;
-2.  _**(Até 1.0 ponto)**_  Publicação das Imagens para a API: a API foi publicada corretamente na cloud;
-3.  _**(Até 1.0 ponto)**_  Documentação do ambiente de desenvolvimento: documentar o ambiente de desenvolvimento (não precisa estar dockerizado), seus requisitos e como executar o projeto. Exportar os notebooks temporários que foram utilizados em seu desenvolvimento;
-4.  _**(Até 1.0 ponto)**_  Documentação da API e seu funcionamento;
-5.  _**(Até 1.0 ponto)**_  Descrever qual modelo de Machine Learning foi escolhido e justificar sua escolha: essa justificativa pode vir da comparação entre diversos modelos que foram previamente aplicados;
-6.  _**(Até 1.0 ponto)**_  As instruções no arquivo README foram suficientes para executar a aplicação: as instruções no arquivo README foram suficientes para executar a aplicação APENAS SEGUINDO OS PASSOS CONTIDOS NO DOCUMENTO;
-7.  _**(Até 2.0 pontos)**_  Treinamento do modelo;
-8.  _**(Até 2.0 pontos)**_  Pré-processamento dos dados;
+1.  _**(Até 2.0 ponto)**_  Publicação das Imagens para os sistemas: o sistema foi publicada corretamente na cloud (API, Modelo, Backend e Frontend);
+2.  _**(Até 1.0 ponto)**_  Documentação do ambiente de de produção: documentar o ambiente de produção que foi implementado;
+3.  _**(Até 3.0 ponto)**_  Construção do Dashboard: o dashboard foi construído e consome os dados da API;
+4.  _**(Até 2.0 ponto)**_  Construção do Frontend: o frontend foi construído e consome os dados da API e faz o login do usuário;
+5.  _**(Até 2.0 ponto)**_  As instruções no arquivo README foram suficientes para executar a aplicação: as instruções no arquivo README foram suficientes para executar a aplicação APENAS SEGUINDO OS PASSOS CONTIDOS NO DOCUMENTO;
 
-## Descrição do projeto
+## Visão Geral
 
-Este projeto utiliza um modelo de Machine Learning para prever a condição do tratamento de doenças cardíacas. Ele foi desenvolvido no Google Colab e posteriormente transferido para um ambiente virtual em Python no formato pkl. O modelo foi escolhido após um processo de seleção com a biblioteca Pycaret e deployado usando FastAPI. A API está contêinerizada com Docker e hospedada em uma instância EC2 da AWS.
+Este projeto consiste na implementação de um Dashboard de Visualização de Dados, desenvolvido para integrar as atividades anteriores e prover uma interface de usuário interativa e segura para acesso aos dados do modelo de Machine Learning previamente desenvolvido e deployado. O front end foi construído utilizando Streamlit e é acessado mediante autenticação de login implementada via FastAPI no back end.
 
-A imagem do docker do projeto está disponível em: [Repositório Docker](https://hub.docker.com/repository/docker/patriciahonorato/deploy-modelo-heart-predict/general)
+### Endereço do Dashboard:
 
-### Tecnologias utilizadas
+[http://ec2-35-171-20-219.compute-1.amazonaws.com:8501/](http://ec2-35-171-20-219.compute-1.amazonaws.com:8501/)
 
--   Python;
--   FastAPI;
--   Pycaret;
--   Uvicorn;
--   Docker;
--   AWS EC2.
-### Funcionalidades
+### Imagens Docker:
 
--   **Python**: Linguagem de programação principal.
--   **FastAPI**: Framework web utilizado para desenvolver a API.
--   **Pycaret**: Biblioteca de Machine Learning usada para treinar, testar e selecionar o modelo.
--   **Docker**: Usado para contêinerizar o projeto.
--   **AWS EC2**: Serviço de cloud utilizado para hospedar a API.
--   **Uvicorn:** ASGI server, necessário para servir nossa API.
+-   FastAPI Backend: `patriciahonorato/fastapi-ponderada-4:tagname`
+-   Streamlit Frontend: `patriciahonorato/streamlit-ponderada-4:tagname`
 
-## Descrição e Justificativa do Modelo de Machine Learning
-O modelo de Machine Learning escolhido para este projeto foi o Logistic Regression. A escolha deste modelo foi baseada em vários fatores:
+## Tecnologias Utilizadas
 
-**- Comparação entre Modelos:** Durante a fase inicial do projeto, vários modelos foram testados usando a biblioteca Pycaret. Esta biblioteca testa diversos modelos e compara suas métricas. O modelo de regressão logística destacou-se com uma acurácia de 0.8362 e AUC de 0.8914.
+-   **Streamlit**
+    
+-   **FastAPI**
+    
+-   **Docker**
+    
+-   **AWS EC2**
+    
+-   **AWS S3**
+    
 
-**- Interpretabilidade:** O modelo de regressão logística oferece uma interpretação clara dos pesos associados a cada recurso, o que pode ser útil para entender a importância relativa das características no contexto de doenças cardíacas.
+## Arquitetura do Projeto
 
-**- Velocidade:** Em comparação com modelos mais complexos, como redes neurais ou ensembles avançados, a regressão logística tende a ser mais rápida e exige menos recursos computacionais, tornando-a adequada para deployment.
+1.  **Frontend (Streamlit)**: Apresenta os dados e visualizações, interage com o usuário para autenticação e consulta ao modelo.
+    
+2.  **Backend (FastAPI)**: Gerencia a autenticação do usuário, comunica-se com o front end e provê acesso seguro ao modelo e aos dados.
+    
+3.  **AWS S3 Bucket**: Armazena o modelo de Machine Learning que é acessado pelo back end.
+    
+4.  **Docker**: Contêineres que encapsulam o front e o back end, facilitando o deploy na instância EC2 da AWS.
+    
 
-### Pré-processamento dos Dados
-No contexto deste projeto, os seguintes passos para pré processamento dos dados foram realizados:
+## Funcionalidades
 
-**- Tratamento de Valores Faltantes:** Antes de qualquer processamento adicional, o conjunto de dados foi examinado para valores faltantes usando df.isnull().sum(). Essa etapa é fundamental para garantir que não estamos alimentando valores ausentes no modelo, o que pode levar a resultados imprecisos.
+### Frontend (Streamlit)
 
-**- Conversão de Variáveis Categóricas:** As colunas categóricas, como 'sex', 'cp', entre outras, foram convertidas para o tipo 'category'. Isso facilita a codificação destas colunas mais tarde e também melhora a eficiência do modelo, pois ele não terá que lidar com valores de texto.
+-   **Visualização de Dados**: Exibe visualizações interativas e informações pertinentes derivadas do modelo de ML.
+    
+-   **Comunicação com a API**: Envia requisições ao back end para autenticação e para recuperação de dados.
+    
 
-**- Escalonamento de Variáveis Numéricas:** Para garantir que todas as características numéricas estejam na mesma escala e para melhorar a convergência do modelo, as variáveis numéricas foram padronizadas usando o StandardScaler do scikit-learn. Isso significa que cada recurso terá uma média de 0 e um desvio padrão de 1.
+### Backend (FastAPI)
 
-## Funcionamento da API
+-   **Autenticação**: Valida as credenciais do usuário e permite/denega o acesso ao dashboard.
+    
+-   **API para Consumo de Dados**: Disponibiliza endpoints para recuperação de dados e interação com o modelo de ML.
+    
 
-A API utiliza um modelo treinado previamente com a biblioteca PyCaret,  seu principal objetivo é fornecer um endpoint dedicado para a predição precisa de doenças cardíacas.
+### AWS S3
 
-**- Modelos Pydantic:**
+-   **Armazenamento de Modelo**: Hospeda o modelo de Machine Learning para ser acessado pelo back end quando necessário.
 
-**HeartPredictInput:** Define o esquema de dados de entrada esperado pela API, que inclui todos os recursos necessários para a predição.
+## Execução e Deploy
 
-**Campos de entrada:**
+### Imagens Docker
 
-    age: idade
-    sex: sexo
-    cp: tipo de dor no peito
-    trestbps: pressão arterial em repouso
-    chol: colesterol
-    fbs: açúcar no sangue em jejum
-    restecg: resultados eletrocardiográficos em repouso
-    thalach: frequência cardíaca máxima alcançada
-    exang: angina induzida por exercício
-    oldpeak: depressão do segmento ST induzida pelo exercício
-    slope: inclinação do segmento ST
-    ca: número de vasos principais
-    thal: teste de estresse com tálio
-    HeartPredictOutput: Define o esquema de saída da predição.
-  
-**HeartPredictOutput:** Este modelo ilustra o formato de saída após a predição.
+As imagens do Docker para o frontend e backend estão disponíveis no Docker Hub:
 
-**Campos de saída:**
-**prediction**: Este campo traduz o resultado da predição, onde '1' indica presença e '0' ausência de doença cardíaca.
+-   [Frontend](https://hub.docker.com/r/patriciahonorato/streamlit-ponderada-4)
+-   [Backend](https://hub.docker.com/r/patriciahonorato/fastapi-ponderada-4)
 
-**Exemplo de utilização do endpoint:**
 
-    curl --request POST \
-      --url http://localhost:8000/predict \
-      --header 'content-type: application/json' \
-      --data '{ "age": 52, "sex": 1, ... outros campos... }'
+## Deploy na AWS
+**1. Instanciação do EC2:**
+- Inicie uma instância EC2 via AWS Console.
+- Selecione a AMI e o tipo de instância.
+- Configure detalhes e adicione regras de segurança.
+- Gere e baixe a chave de acesso.
+**2. Acesso e Configuração da Instância:**
+- Acesse via SSH.
+- Instale e inicie o Docker e Docker-Compose (se necessário).
+**3. Configuração dos Contêineres Docker:**
+- Realize o pull das imagens Docker desejadas.
+`docker pull patriciahonorato/fastapi-ponderada-4:tagname`
+`docker pull patriciahonorato/streamlit-ponderada-4:tagname`
+- Utilize um arquivo docker-compose.yml para orquestrar os contêineres.
+`version: '3'`
+`services:`
+ ` fastapi-app:`
+   ` image: patriciahonorato/fastapi-ponderada-4:tagname`
+    `ports:`
+     ` - "8000:8000"`
+  `streamlit-app:`
+    `image: patriciahonorato/streamlit-ponderada-4:tagname
+    ports:`
+      `- "8501:8501"`
+- Inicie os contêineres com docker-compose up -d.
+**4. Configuração do Bucket S3:**
 
-**Execução da API:**
+-   No serviço S3 no console da AWS é criado um novo bucket.
+-   Nele é feito o upload do modelo treinado para o bucket criado (`heart_predict.pkl`).
+-   É necessário garantir que o modelo pode ser acessado pela instância EC2 configurando as políticas de IAM e as permissões do bucket conforme necessário.
 
-Para rodar a API localmente, o script pode ser executado diretamente. Isto iniciará um servidor local usando Uvicorn no endereço `127.0.0.1` e na porta `8000`.
+**5. Validação:**
+Verifique o acesso e funcionalidade da aplicação.
 
-## Estrutura de pastas do projeto
+## Vídeo Demonstrativo
 
-    Ponderada 3/
-    ├── app/
-    │   └── models/
-    │       └── modelo.pkl
-    │   └── main.py
-    ├── Dockerfile
-    ├── dockerignore
-    ├── requirements.txt
-    └── logs.log
+Nesse vídeo é mostrado uma demonstração prática do funcionamento da aplicação com o modelo na instância EC2 [(link)](https://drive.google.com/file/d/1emg5a_9jbywq6z-MVN4Bv4MrnuuJJvb2/view?usp=drive_link).
 
-## Instruções de utilização
-
-**1.  Clonar o repositório do GitHub que contém o arquivo Dockerfile e demais componentes:**
-
-    `git clone ipatriciahonorato/modulo7/tree/main/Ponderada%203`
-   
-
-**2.  Puxar a imagem Docker Hub:**
-
-   `docker pull patriciahonorato/deploy-modelo-heart-predict`
-
-**3.  Acessar a API pelo link:**
-
-[http://ec2-184-73-91-169.compute-1.amazonaws.com/docs](http://ec2-184-73-91-169.compute-1.amazonaws.com/docs)
-
-(**Observação:** o deploy da API foi feita nesse link mas conforme as instruções da atividade, após a gravação do vídeo a API foi excluída da nuvem.)
-
-## Vídeo de demonstração de funcionamento do projeto
-
-[Link do video no Google Drive](https://drive.google.com/file/d/1FUuOb9ZGqrjV-6_IHeKmp3zZMEbWdDt8/view?usp=sharing)
-
-### Referências
-
-[Dataset do Kaggle de Heart Disease Cleveland UCI](https://www.kaggle.com/datasets/cherngs/heart-disease-cleveland-uci)
