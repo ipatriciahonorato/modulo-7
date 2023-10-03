@@ -19,7 +19,7 @@ model_file_name = 'heart_predict.pkl'
 
 # Baixe o modelo do S3 e carregue-o para o FastAPI
 local_model_path = "local_heart_predict"
-s3.download_file(bucket_name, model_file_name, local_model_path)
+s3.download_file(bucket_name, model_file_name, "local_heart_predict.pkl")
 model = load_model(local_model_path)
 
 # Authentication setup
