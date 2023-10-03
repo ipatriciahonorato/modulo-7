@@ -121,5 +121,5 @@ Verifique o acesso e funcionalidade da aplicação.
 
 ## Vídeo Demonstrativo
 
-Nesse vídeo é mostrado uma demonstração prática do funcionamento da aplicação com o modelo na instância EC2 [(link)](https://drive.google.com/file/d/1emg5a_9jbywq6z-MVN4Bv4MrnuuJJvb2/view?usp=drive_link).
+Nesse vídeo é mostrado uma demonstração prática do funcionamento da aplicação com o modelo na instância EC2 [(link do video no google drive)](https://drive.google.com/file/d/1emg5a_9jbywq6z-MVN4Bv4MrnuuJJvb2/view?usp=drive_link).
 
