@@ -18,25 +18,25 @@ bucket_name = 'meu-bucket-inteli-patricia'
 model_file_name = 'heart_predict.pkl'
 
 # Baixe o modelo do S3 e carregue-o para o FastAPI
-local_model_path = "local_heart_predict.pkl"
+local_model_path = "local_heart_predict"
 s3.download_file(bucket_name, model_file_name, local_model_path)
 model = load_model(local_model_path)
 
 # Authentication setup
 SECRET = "perseu-e-fumaca"
-manager = LoginManager(SECRET, tokenUrl='/auth/token', use_cookie=False)
+manager = LoginManager(SECRET, token_url='/auth/token', use_cookie=False)
 fake_users_db = {"testuser": {"username": "testuser", "password": "testpassword", "disabled": False}}
 
-def get_current_user(token: str = Depends(manager)):
-    try:
-        payload = manager.decode_token(token)
-    except InvalidCredentialsException:
-        raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail="Invalid token")
-    
-    user = fake_users_db.get(payload.get("sub"))
+@manager.user_loader
+def load_user(username: str):
+    user = fake_users_db.get(username)
+    return user
+
+def get_current_user(payload: dict = Depends(manager)):
+    user = load_user(payload.get('username'))
     if user is None or user.get("disabled"):
         raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail="Unauthorized")
-    
+
     return user
 
 @app.post('/auth/token')
@@ -47,7 +47,7 @@ def login(data: dict):
 
     if user is None or password != user.get("password"):
         raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail="Invalid credentials")
-    
+
     return {'access_token': manager.create_access_token(data={'sub': username})}
 
 # Define Pydantic models

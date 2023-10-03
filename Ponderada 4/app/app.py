@@ -4,16 +4,19 @@ import requests
 # GUI layout
 st.title('Heart Disease Prediction')
 
+if "token" not in st.session_state:
+    st.session_state.token = None
+
 # User login
 st.sidebar.subheader("User Login")
 username = st.sidebar.text_input("Username")
 password = st.sidebar.text_input("Password", type="password")
 if st.sidebar.button('Login'):
-    response = requests.post('http://ec2-3-84-34-200.compute-1.amazonaws.com/auth/token', json={'username': username, 'password': password})
+    response = requests.post('http://localhost:8000/auth/token', json={'username': username, 'password': password})
     if response.status_code != 200:
         st.sidebar.write('Login failed')
     else:
-        token = response.json()['access_token']
+        st.session_state.token = response.json()['access_token']
         st.sidebar.write('Logged in successfully')
 
 # GUI inputs
@@ -33,10 +36,10 @@ thal = st.selectbox('Thal', [0, 1, 2, 3])
 
 # When 'Predict' is clicked, make a request to the API and display the output
 if st.button('Predict'):
-    if 'token' not in locals():
+    if st.session_state.token is None:
         st.write('Please login first')
     else:
-        response = requests.post('http://ec2-3-84-34-200.compute-1.amazonaws.com/predict', headers={'Authorization': f'Bearer {token}'}, json={
+        response = requests.post('http://localhost:8000/predict', headers={'Authorization': f'Bearer {st.session_state.token}'}, json={
         'age': age,
         'sex': sex,
         'cp': cp,
